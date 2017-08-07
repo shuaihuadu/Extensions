@@ -3,8 +3,29 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Documents", "1.Documents", "{8332DD45-0D9A-4995-AE59-4E42FF34CA92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Libraries", "2.Libraries", "{114F163F-41AA-4372-8FF4-9FF46751E85B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Tests", "3.Tests", "{AEA9CA52-9ED6-4234-A49F-9C46A061C9A3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Extensions", "2.Libraries\System.Extensions\System.Extensions.csproj", "{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5} = {114F163F-41AA-4372-8FF4-9FF46751E85B}
 	EndGlobalSection
 EndGlobal
