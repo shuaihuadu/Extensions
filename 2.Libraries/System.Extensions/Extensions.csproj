@@ -7,8 +7,8 @@
     <ProjectGuid>{1FEFCB7F-9E07-4C46-B2A0-FF48BBD393F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System</RootNamespace>
-    <AssemblyName>System.Extensions</AssemblyName>
+    <RootNamespace>Extensions</RootNamespace>
+    <AssemblyName>Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,9 +41,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="StringExtensions.cs" />
-    <Compile Include="Int32Extensions.cs" />
+    <Compile Include="Resources\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="System.Collections.Specialized\NameValueCollectionExtensions.cs" />
+    <Compile Include="System\DateTimeExtensions.cs" />
+    <Compile Include="System.Collections.Generic\IEnumerableExtensions.cs" />
+    <Compile Include="System\EnumExtensions.cs" />
+    <Compile Include="System\ObjectExtensions.cs" />
+    <Compile Include="System\CharExtensions.cs" />
+    <Compile Include="System\ByteExtensions.cs" />
+    <Compile Include="System\FloatExtensions.cs" />
+    <Compile Include="System\DoubleExtensions.cs" />
+    <Compile Include="System\DecimalExtensions.cs" />
+    <Compile Include="System\StringExtensions.cs" />
+    <Compile Include="System\Int32Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource.en-US.resx" />
+    <EmbeddedResource Include="Resources\Resource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

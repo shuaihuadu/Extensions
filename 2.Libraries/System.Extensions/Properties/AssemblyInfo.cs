@@ -1,16 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("System.Extensions")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Extensions")]
+[assembly: AssemblyDescription("Common extensions of .Net.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("System.Extensions")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCompany("IdeaTech")]
+[assembly: AssemblyProduct("Extensions")]
+[assembly: AssemblyCopyright("Copyright © IdeaTech 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
