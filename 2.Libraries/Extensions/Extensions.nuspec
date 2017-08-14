@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>DotNet.Extensions</id>
+    <version>1.1</version>
+    <title>DotNet Extensions</title>
+    <authors>DuShuaiHua</authors>
+    <owners>DuShuaiHua</owners>
+    <licenseUrl>http://www.gnu.org/licenses/agpl.html</licenseUrl>
+    <projectUrl>https://github.com/dushuaihua/Extensions</projectUrl>
+    <iconUrl>https://secure.gravatar.com/avatar/67e77c3f811e5ed5794108567ec482c5</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The .Net framework common extensions.</description>
+    <releaseNotes>First Release.</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>Extensions</tags>
+  </metadata>
+</package>
+<!-- Command -->
+<!--
+nuget spec
+nuget pack Extensions.csproj
+nuget push xxx.nupkg APIKey -Source https://www.nuget.org/api/v2/package
+-->

@@ -85,7 +85,7 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>1753/01/01 00:00:00 000</returns>
-        public static DateTime ToSqlMinValue(this DateTime dateTime)
+        public static DateTime ToSqlServerMinValue(this DateTime dateTime)
         {
             return new DateTime(1753, 1, 1, 0, 0, 0, 0);
         }
@@ -94,7 +94,7 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>9999/12/31 23:59:59 997</returns>
-        public static DateTime ToSqlMaxValue(this DateTime dateTime)
+        public static DateTime ToSqlServerMaxValue(this DateTime dateTime)
         {
             return new DateTime(9999, 12, 31, 23, 59, 59, 997);
         }
@@ -103,10 +103,10 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>A safe value of sql server dateTime</returns>
-        public static DateTime ToSqlSafeDateTime(this DateTime dateTime)
+        public static DateTime ToSqlServerSafeDateTime(this DateTime dateTime)
         {
-            DateTime sqlServerMaxDateTime = DateTime.Parse("9999-12-31 23:59:59");
-            DateTime sqlServerMinDateTime = DateTime.Parse("1753-01-01 00:00:00");
+            DateTime sqlServerMaxDateTime = new DateTime(9999, 12, 31, 23, 59, 59, 997);
+            DateTime sqlServerMinDateTime = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             if (dateTime == null)
             {
                 return sqlServerMinDateTime;

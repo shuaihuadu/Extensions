@@ -101,13 +101,23 @@ namespace System
         /// </summary>
         /// <param name="value">The string to test.</param>
         /// <returns>true if the value parameter is a correct chinese mobile phone number; otherwise, false.</returns>
-        public static bool IsMobile(this string value)
+        public static bool IsChineseMobile(this string value)
         {
             if (value.IsNullOrBlank())
             {
                 return false;
             }
             return new Regex(@"^1(3[0-9]|4[57]|5[0-35-9]|7[0678]|8[0-9])\d{8}$").Match(value).Success;
+        }
+        /// <summary>
+        /// Indicates whether the specified string is a correct uri.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <returns>true if the value parameter is a correct uri; otherwise ,false.</returns>
+        public static bool IsUrl(this string value)
+        {
+            Uri uriResult;
+            return Uri.TryCreate(value, UriKind.Absolute, out uriResult) && uriResult.Scheme == Uri.UriSchemeHttp;
         }
         /// <summary>
         /// Indicates whether the specified string is Chinese character.
