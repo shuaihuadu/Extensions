@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Enums.cs" />
     <Compile Include="HtmlHelper.cs" />
+    <Compile Include="HttpBrowserCapabilitiesBaseExtensions.cs" />
     <Compile Include="HttpSessionStateExtension.cs" />
     <Compile Include="ImageResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
