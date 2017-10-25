@@ -376,5 +376,55 @@ namespace System
                 throw new ArgumentException("Input string is not a valid GUID format.");
             }
         }
+        /// <summary>
+        /// Return the specified string with first character upper status.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string FirstCharToUpper(this string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+            if (value.Length > 1)
+            {
+                return char.ToUpper(value[0]) + value.Substring(1);
+            }
+            return value.ToUpper();
+        }
+        /// <summary>
+        /// Replaces the all special sharacters in <paramref name="value"/> with <paramref name="replacement"/>.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="replacement">The replacement.</param>
+        /// <returns></returns>
+        public static string ReplaceSpecialSharacters(this string value, char replacement = char.MinValue)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return string.Empty;
+            }
+            var chars = new char[value.Length];
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!value[i].IsLetterOrDigit())
+                {
+                    chars[i] = replacement;
+                }
+                else
+                {
+                    chars[i] = value[i];
+                }
+            }
+            if (replacement == char.MinValue)
+            {
+                return new string(chars.Where(x => x != replacement).ToArray());
+            }
+            else
+            {
+                return new string(chars);
+            }
+        }
     }
 }

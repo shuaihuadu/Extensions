@@ -20,6 +20,16 @@ namespace System
         {
             return obj == null;
         }
+
+        /// <summary>
+        /// Indicates whether the specified object is not null.
+        /// </summary>
+        /// <param name="obj">The object to test.</param>
+        /// <returns>true if the object is not null;otherwise, false.</returns>
+        public static bool IsNotNull(this object obj)
+        {
+            return !IsNull(obj);
+        }
         /// <summary>
         /// Indicates whether the specified object is <typeparamref name="T"/>.
         /// </summary>
@@ -36,9 +46,9 @@ namespace System
         /// <typeparam name="T">The type of expected.</typeparam>
         /// <param name="obj">The object to test.</param>
         /// <returns>true if the object is not <typeparamref name="T"/>;otherwise, false.</returns>
-        public static bool IsNot<T>(this object item) where T : class
+        public static bool IsNot<T>(this object obj) where T : class
         {
-            return !(item.Is<T>());
+            return !(obj.Is<T>());
         }
         /// <summary>
         /// Convert the specified object to <typeparamref name="T"/>.
@@ -46,9 +56,9 @@ namespace System
         /// <typeparam name="T">The type of expected.</typeparam>
         /// <param name="obj">The object to convert.</param>
         /// <returns>The converted <typeparamref name="T"/></returns>
-        public static T As<T>(this object item) where T : class
+        public static T As<T>(this object obj) where T : class
         {
-            return item as T;
+            return obj as T;
         }
         /// <summary>
         /// Convert the <paramref name="obj"/> to byte[].
