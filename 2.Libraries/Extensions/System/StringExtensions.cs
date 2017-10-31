@@ -273,6 +273,93 @@ namespace System
             }
         }
         /// <summary>
+        /// Convert specified string to a <see cref="byte"/> value.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <param name="default">The default value while the convert faild.</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns>The converted <see cref="byte"/> value.If the specified string is not a byte value,returns the <paramref name="default"/>.</returns>
+        public static byte ToByte(this string value, byte @default = 0)
+        {
+            try
+            {
+                return value.ToByte();
+            }
+            catch (Exception)
+            {
+                return @default;
+            }
+        }
+        /// <summary>
+        /// Convert specified string to a <see cref="short"/> value.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <param name="default">The default value while the convert faild.</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns>The converted <see cref="short"/> value.If the specified string is not a <see cref="short"/> value,returns the <paramref name="default"/>.</returns>
+        public static short ToInt16(this string value, short @default)
+        {
+            try
+            {
+                return value.ToInt16();
+            }
+            catch (Exception)
+            {
+                return @default;
+            }
+        }
+        /// <summary>
+        /// Convert specified string to an <see cref="int"/> value.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <param name="default">The default value while the convert faild.</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns>The converted <see cref="int"/> value.If the specified string is not a <see cref="int"/> value,returns the <paramref name="default"/>.</returns>
+        public static int ToInt32(this string value, int @default = 0)
+        {
+            try
+            {
+                return value.ToInt32();
+            }
+            catch (Exception)
+            {
+                return @default;
+            }
+        }
+        /// <summary>
+        /// Convert specified string to a <see cref="long"/> value.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <param name="default">The default value while the convert faild.</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns>The converted <see cref="long"/> value.If the specified string is not a <see cref="long"/> value,returns the <paramref name="default"/>.</returns>
+        public static long ToInt64(this string value, long @default = 0)
+        {
+            try
+            {
+                return value.ToInt64();
+            }
+            catch (Exception)
+            {
+                return @default;
+            }
+        }
+        /// <summary>
+        /// Convert specified string to a <see cref="byte"/> value.
+        /// </summary>
+        /// <param name="value">The string to test.</param>
+        /// <exception cref="ArgumentException"></exception>
+        /// <returns>The converted <see cref="byte"/> value.</returns>
+        public static byte ToByte(this string value)
+        {
+            byte result = 0;
+            if (!value.IsNullOrBlank() && byte.TryParse(value, out result))
+            {
+                return result;
+            }
+            throw new ArgumentException("The specified string is not a byte value.");
+        }
+        /// <summary>
         /// Convert specified string to a <see cref="short"/> value.
         /// </summary>
         /// <param name="value">The string to test.</param>
@@ -300,7 +387,7 @@ namespace System
             {
                 return result;
             }
-            throw new ArgumentException("The specified string is not an Int32 value.");
+            throw new ArgumentException("The specified string is not an int value.");
         }
         /// <summary>
         /// Convert specified string to a <see cref="long"/> value.
