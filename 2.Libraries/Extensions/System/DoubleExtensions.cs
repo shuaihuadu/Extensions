@@ -39,7 +39,6 @@
         /// <summary>
         /// Convert specified double to an <see cref="decimal"/> value.
         /// </summary>
-        /// <typeparam name="T">The type of enum.</typeparam>
         /// <param name="value">The double value.</param>
         /// <returns>The converted <see cref="decimal"/> value.</returns>
         public static decimal ToDecimal(this double value)

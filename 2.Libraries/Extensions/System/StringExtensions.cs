@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace System
@@ -511,6 +512,25 @@ namespace System
             else
             {
                 return new string(chars);
+            }
+        }
+        /// <summary>
+        /// Determines whether the <paramref name="value"/> is a valid culture identifier.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the <paramref name="value"/> is valid culture identifier; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsValidCultureIdentifier(this string value)
+        {
+            try
+            {
+                CultureInfo c = CultureInfo.GetCultureInfo(value);
+                return true;
+            }
+            catch
+            {
+                return false;
             }
         }
     }

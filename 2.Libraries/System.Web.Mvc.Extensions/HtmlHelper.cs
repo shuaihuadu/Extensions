@@ -7,18 +7,53 @@ using System.Web.Script.Serialization;
 
 namespace System.Web.Mvc
 {
+    /// <summary>
+    /// The <see cref="HtmlHelper"/> Extensions.
+    /// </summary>
     public static class HtmlHelperExtension
     {
-        #region Image Helper
+        #region Image Helper        
+        /// <summary>
+        /// Generate an image to the specified action name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="helper">The helper.</param>
+        /// <param name="actionName">Name of the action.</param>
+        /// <param name="controllerName">Name of the controller.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        /// <returns></returns>
         public static string Image<T>(this HtmlHelper helper, string actionName, string controllerName, int width, int height) where T : Controller
         {
             return Image<T>(helper, actionName, controllerName, new object[] { }, width, height, string.Empty);
         }
-
+        /// <summary>
+        /// Generate an image to the specified action name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="helper">The helper.</param>
+        /// <param name="actionName">Name of the action.</param>
+        /// <param name="controllerName">Name of the controller.</param>
+        /// <param name="routeValues">The route values.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        /// <returns></returns>
         public static string Image<T>(this HtmlHelper helper, string actionName, string controllerName, object routeValues, int width, int height) where T : Controller
         {
             return Image<T>(helper, actionName, controllerName, routeValues, width, height, string.Empty);
         }
+        /// <summary>
+        /// Generate an image to the specified action name.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="helper">The helper.</param>
+        /// <param name="actionName">Name of the action.</param>
+        /// <param name="controllerName">Name of the controller.</param>
+        /// <param name="routeValues">The route values.</param>
+        /// <param name="width">The width.</param>
+        /// <param name="height">The height.</param>
+        /// <param name="alt">The alt.</param>
+        /// <returns></returns>
         public static string Image<T>(this HtmlHelper helper, string actionName, string controllerName, object routeValues, int width, int height, string alt) where T : Controller
         {
             string url = new UrlHelper(helper.ViewContext.RequestContext).Action(actionName, controllerName, routeValues);
@@ -63,7 +98,7 @@ namespace System.Web.Mvc
         /// 获取布尔值的是否字符串表现形式
         /// </summary>
         /// <param name="helper">HtmlHelper</param>
-        /// <param name="gender">布尔值</param>
+        /// <param name="value">布尔值</param>
         /// <returns>true:是(Yes),fale:否(No),null:未知(Unknow)</returns>
         public static string Boolean(this HtmlHelper helper, bool? value)
         {
@@ -77,7 +112,7 @@ namespace System.Web.Mvc
         /// 获取布尔值的是否字符串表现形式
         /// </summary>
         /// <param name="helper">HtmlHelper</param>
-        /// <param name="gender">布尔值</param>
+        /// <param name="value">布尔值</param>
         /// <returns>true:是(Yes),fale:否(No)</returns>
         public static string Boolean(this HtmlHelper helper, bool value)
         {

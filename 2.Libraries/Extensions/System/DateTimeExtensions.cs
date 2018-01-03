@@ -13,9 +13,9 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>The string value of relative time.</returns>
-        public static string ToRelativeTime(this DateTime date)
+        public static string ToRelativeTime(this DateTime dateTime)
         {
-            TimeSpan diff = DateTime.Now - date;
+            TimeSpan diff = DateTime.Now - dateTime;
             string suffix = string.Empty;
             int numeral = 0;
 
@@ -76,9 +76,9 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>The datetime with min time of the <paramref name="dateTime"/></returns>
-        public static DateTime ToDateWithMinTime(this DateTime date)
+        public static DateTime ToDateWithMinTime(this DateTime dateTime)
         {
-            return date.Date;
+            return dateTime.Date;
         }
         /// <summary>
         /// Returns the min value of sql server datetime.

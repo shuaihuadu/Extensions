@@ -19,7 +19,6 @@
         /// <summary>
         /// Convert specified float to an <see cref="decimal"/> value.
         /// </summary>
-        /// <typeparam name="T">The type of enum.</typeparam>
         /// <param name="value">The float value.</param>
         /// <returns>The converted <see cref="decimal"/> value.</returns>
         public static decimal ToDecimal(this float value)

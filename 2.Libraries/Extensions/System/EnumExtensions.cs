@@ -44,7 +44,6 @@
         /// </summary>
         /// <param name="enum">The enum to test.</param>
         /// <param name="value">The byte value to compare to the <paramref name="enum"/>.</param>
-        /// <param name="comparisonType">One of the enumeration values that determines how this string and value are compared.</param>
         /// <returns>true if the value parameter is the same as the value of <paramref name="enum"/>;othervise, false.</returns>
         public static bool Equals(this Enum @enum, string value)
         {

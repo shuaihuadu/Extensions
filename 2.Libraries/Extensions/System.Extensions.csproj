@@ -48,6 +48,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
+    <Compile Include="System.Collections.Generic\DictionaryExtensions.cs" />
     <Compile Include="System.Collections.Specialized\NameValueCollectionExtensions.cs" />
     <Compile Include="System\DateTimeExtensions.cs" />
     <Compile Include="System.Collections.Generic\IEnumerableExtensions.cs" />

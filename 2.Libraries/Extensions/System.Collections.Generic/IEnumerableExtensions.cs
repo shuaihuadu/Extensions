@@ -32,6 +32,17 @@ namespace System.Collections.Generic
             }
             return !collection.GetEnumerator().MoveNext();
         }
+
+        /// <summary>
+        /// Indicates whether the specified collection is not null or not an empty collection.
+        /// </summary>
+        /// <param name="collection">The collection to test.</param>
+        /// <returns>true if the collection is not null or not an empty collection; otherwise, false.</returns>
+        public static bool IsNotNullOrEmpty(this IEnumerable collection)
+        {
+            return !collection.IsNullOrEmpty();
+        }
+
         /// <summary>
         /// Indicates whether the specified collection is null or an empty collection.
         /// </summary>
@@ -41,6 +52,17 @@ namespace System.Collections.Generic
         public static bool IsNullOrEmpty<T>(this IEnumerable<T> collection)
         {
             return collection == null || (collection != null && collection.Count() == 0);
+        }
+
+        /// <summary>
+        /// Indicates whether the specified collection is not null or not an empty collection.
+        /// </summary>
+        /// <typeparam name="T">The type of elements in the list.</typeparam>
+        /// <param name="collection">The collection to test.</param>
+        /// <returns>true if the collection is not null or not an empty collection; otherwise, false.</returns>
+        public static bool IsNotNullOrEmpty<T>(this IEnumerable<T> collection)
+        {
+            return !collection.IsNullOrEmpty();
         }
 
         /// <summary>
