@@ -6,17 +6,6 @@
     public static class DoubleExtensions
     {
         /// <summary>
-        /// Indicates whether the specified double value is between <paramref name="min"/> and <paramref name="max"/>.
-        /// </summary>
-        /// <param name="value">The double value to test.</param>
-        /// <param name="min">The min value.</param>
-        /// <param name="max">The max value.</param>
-        /// <returns>true if the value is between <paramref name="min"/> and <paramref name="max"/>;otherwise, false.</returns>
-        public static bool Between(this double value, double min, double max)
-        {
-            return value >= min && value <= max;
-        }
-        /// <summary>
         /// Convert specified double value to a file size string.
         /// <para>Supported:KB MB GB TB PB EB</para>
         /// </summary>

@@ -6,17 +6,6 @@
     public static class DecimalExtensions
     {
         /// <summary>
-        /// Indicates whether the specified decimal value is between <paramref name="min"/> and <paramref name="max"/>.
-        /// </summary>
-        /// <param name="value">The decimal value to test.</param>
-        /// <param name="min">The min value.</param>
-        /// <param name="max">The max value.</param>
-        /// <returns>true if the value is between <paramref name="min"/> and <paramref name="max"/>;otherwise, false.</returns>
-        public static bool Between(this decimal value, decimal min, decimal max)
-        {
-            return value >= min && value <= max;
-        }
-        /// <summary>
         /// Convert specified decimal value to a file size string.
         /// <para>Supported:KB MB GB TB PB EB</para>
         /// </summary>
@@ -26,7 +15,7 @@
         {
             if (size < 0)
             {
-                throw new ArgumentException("Size must greater or equals than zero.", "size");
+                throw new ArgumentException("Size must greater or equals than zero.", nameof(size));
             }
             if (size < 1024) { return (size).ToString("F0") + " bytes"; }
             if (size < Convert.ToDecimal(Math.Pow(1024, 2))) { return (size / 1024).ToString("F0") + "KB"; }

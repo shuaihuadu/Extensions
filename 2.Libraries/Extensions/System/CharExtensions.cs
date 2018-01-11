@@ -12,7 +12,7 @@
         /// <returns>true if the character is a digit;otherwise, false.</returns>
         public static bool IsDigit(this char c)
         {
-            return c >= '0' && c <= '9';
+            return Char.IsDigit(c);
         }
         /// <summary>
         /// Indicates whether the specified <see cref="char"/> is a  lower case ASCII letter.
@@ -21,7 +21,7 @@
         /// <returns>true if the character is a lower case ASCII letter;otherwise, false.</returns>
         public static bool IsLower(this char c)
         {
-            return c >= 'a' && c <= 'z';
+            return Char.IsLower(c);
         }
         /// <summary>
         /// Indicates whether the specified <see cref="char"/> is an upper case ASCII letter.
@@ -30,7 +30,7 @@
         /// <returns>true if the character is an upper case ASCII letter;otherwise, false.</returns>
         public static bool IsUpper(this char c)
         {
-            return c >= 'A' && c <= 'Z';
+            return Char.IsUpper(c);
         }
         /// <summary>
         /// Indicates whether the specified character is an ASCII letter or digit.
@@ -39,7 +39,7 @@
         /// <returns>true if the character is an ASCII letter or digit;otherwise, false.</returns>
         public static bool IsLetterOrDigit(this char c)
         {
-            return IsUpper(c) || IsLower(c) || IsDigit(c);
+            return Char.IsLetterOrDigit(c);
         }
     }
 }

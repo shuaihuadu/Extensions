@@ -88,7 +88,7 @@ namespace System.Collections.Generic
             DataTable dataTable = new DataTable();
             if (collection.IsNullOrEmpty())
             {
-                throw new ArgumentNullException("collection", "The collection to convert can not be null or empty.");
+                throw new ArgumentNullException(nameof(collection), "The collection to convert can not be null or empty.");
             }
             PropertyInfo[] propertys = collection.FirstOrDefault().GetType().GetProperties();
             foreach (PropertyInfo pi in propertys)

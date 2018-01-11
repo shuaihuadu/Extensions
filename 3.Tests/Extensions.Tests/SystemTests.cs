@@ -40,5 +40,11 @@ namespace Extensions.Tests
             }
             Console.WriteLine(string.Join("", strs.ToArray()));
         }
+        [TestMethod]
+        public void Between_Test()
+        {
+            int a = 1;
+            Console.WriteLine(a.Between(1, 2));
+        }
     }
 }

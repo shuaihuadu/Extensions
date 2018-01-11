@@ -6,17 +6,6 @@
     public static class Int32Extensions
     {
         /// <summary>
-        /// Indicates whether the specified int value is between <paramref name="min"/> and <paramref name="max"/>.
-        /// </summary>
-        /// <param name="value">The int value to test.</param>
-        /// <param name="min">The min value.</param>
-        /// <param name="max">The max value.</param>
-        /// <returns>true if the value is between <paramref name="min"/> and <paramref name="max"/>;otherwise, false.</returns>
-        public static bool Between(this int value, int min, int max)
-        {
-            return value >= min && value <= max;
-        }
-        /// <summary>
         /// Convert specified int to an <see cref="Enum"/> value.
         /// </summary>
         /// <typeparam name="T">The type of enum.</typeparam>

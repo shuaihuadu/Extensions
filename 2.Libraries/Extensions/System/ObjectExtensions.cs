@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Xml;
@@ -100,12 +101,12 @@ namespace System
             {
                 try
                 {
-                    StringBuilder builder = new StringBuilder();
-                    XmlSerializer serializer = new XmlSerializer(obj.GetType());
-                    XmlWriter writer = XmlWriter.Create(builder);
-                    serializer.Serialize(writer, obj);
-                    result = builder.ToString();
-                    writer.Close();
+                    var serializer = new XmlSerializer(obj.GetType());
+                    using (var writer = new StringWriter())
+                    {
+                        serializer.Serialize(writer, obj);
+                        return writer.ToString();
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -113,6 +114,59 @@ namespace System
                 }
             }
             return result;
+        }
+        /// <summary>
+        /// Determines whether the <paramref name="item"/> in the specified <paramref name="list"/>.
+        /// </summary>
+        /// <typeparam name="T">The type of <paramref name="item"/>.</typeparam>
+        /// <param name="item">The item.</param>
+        /// <param name="list">The list.</param>
+        /// <returns>
+        ///   <c>true</c> if the <paramref name="item"/> is in the <paramref name="list"/>; otherwise, <c>false</c>.
+        /// </returns>
+        /// <exception cref="ArgumentNullException">list</exception>
+        public static bool In<T>(this T item, params T[] list)
+        {
+            if (list.IsNull())
+            {
+                throw new ArgumentNullException(nameof(list));
+            }
+            return list.Contains(item);
+        }
+        /// <summary>
+        /// Determines whether the <paramref name="actual"/> is between <paramref name="lower"/> and <paramref name="upper"/>.
+        /// </summary>
+        /// <typeparam name="T">The type where inherts <see cref="IComparable{T}"/></typeparam>
+        /// <param name="actual">The actual.</param>
+        /// <param name="lower">The lower.</param>
+        /// <param name="upper">The upper.</param>
+        /// <returns>
+        ///   <c>true</c> <paramref name="actual"/> is between <paramref name="lower"/> and <paramref name="upper"/>; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool Between<T>(this T actual, T lower, T upper) where T : IComparable<T>
+        {
+            return actual.CompareTo(lower) >= 0 && actual.CompareTo(upper) <= 0;
+        }
+        /// <summary>
+        /// Withes the specified action.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">The object.</param>
+        /// <param name="action">The action.</param>
+        public static void With<T>(this T obj, Action<T> action)
+        {
+            action(obj);
+        }
+        /// <summary>
+        /// Throws if argument is null.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">The object.</param>
+        /// <param name="parameterName">Name of the parameter.</param>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static void ThrowIfArgumentIsNull<T>(this T obj, string parameterName) where T : class
+        {
+            if (obj == null) throw new ArgumentNullException(parameterName + " not allowed to be null");
         }
     }
 }

@@ -132,17 +132,6 @@ namespace System
             return dateTime.AddMonths(1).AddDays(-1);
         }
         /// <summary>
-        /// Indicates whether the specified date time is between <paramref name="start"/> and <paramref name="end"/>.
-        /// </summary>
-        /// <param name="dateTime">The date time to test.</param>
-        /// <param name="start">The start date time.</param>
-        /// <param name="end">The end date time.</param>
-        /// <returns>true if the value is between <paramref name="start"/> and <paramref name="end"/>;otherwise, false.</returns>
-        public static bool Between(this DateTime dateTime, DateTime start, DateTime end)
-        {
-            return dateTime.Ticks >= start.Ticks && dateTime.Ticks <= end.Ticks;
-        }
-        /// <summary>
         /// Returns the ages of the specified date time until now.
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>

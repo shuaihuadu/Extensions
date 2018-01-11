@@ -117,8 +117,7 @@ namespace System
         /// <returns>true if the value parameter is a correct uri; otherwise ,false.</returns>
         public static bool IsUrl(this string value)
         {
-            Uri uriResult;
-            return Uri.TryCreate(value, UriKind.Absolute, out uriResult) && uriResult.Scheme == Uri.UriSchemeHttp;
+            return Uri.TryCreate(value, UriKind.Absolute, out Uri uriResult) && uriResult.Scheme == Uri.UriSchemeHttp;
         }
         /// <summary>
         /// Indicates whether the specified string is Chinese character.
@@ -353,8 +352,7 @@ namespace System
         /// <returns>The converted <see cref="byte"/> value.</returns>
         public static byte ToByte(this string value)
         {
-            byte result = 0;
-            if (!value.IsNullOrBlank() && byte.TryParse(value, out result))
+            if (!value.IsNullOrBlank() && byte.TryParse(value, out byte result))
             {
                 return result;
             }
@@ -368,8 +366,7 @@ namespace System
         /// <returns>The converted <see cref="short"/> value.</returns>
         public static short ToInt16(this string value)
         {
-            short result = 0;
-            if (!value.IsNullOrBlank() && short.TryParse(value, out result))
+            if (!value.IsNullOrBlank() && short.TryParse(value, out short result))
             {
                 return result;
             }
@@ -383,8 +380,7 @@ namespace System
         /// <returns>The converted <see cref="int"/> value.</returns>
         public static int ToInt32(this string value)
         {
-            int result = 0;
-            if (!value.IsNullOrBlank() && int.TryParse(value, out result))
+            if (!value.IsNullOrBlank() && int.TryParse(value, out int result))
             {
                 return result;
             }
@@ -398,8 +394,7 @@ namespace System
         /// <returns>The converted <see cref="long"/> value.</returns>
         public static long ToInt64(this string value)
         {
-            long result = 0;
-            if (!value.IsNullOrBlank() && long.TryParse(value, out result))
+            if (!value.IsNullOrBlank() && long.TryParse(value, out long result))
             {
                 return result;
             }
@@ -417,7 +412,7 @@ namespace System
         {
             if (value.IsNullOrBlank())
             {
-                throw new ArgumentException("Must specify valid information for parsing in the string.", "value");
+                throw new ArgumentException("Must specify valid information for parsing in the string.", nameof(value));
             }
             Type t = typeof(T);
             if (!t.IsEnum)
@@ -434,8 +429,7 @@ namespace System
         /// <returns>The converted <see cref="DateTime"/> value.</returns>
         public static DateTime ToDateTime(this string value)
         {
-            DateTime result;
-            if (!value.IsNullOrBlank() && DateTime.TryParse(value, out result))
+            if (!value.IsNullOrBlank() && DateTime.TryParse(value, out DateTime result))
             {
                 return result;
             }
@@ -529,6 +523,120 @@ namespace System
                 return true;
             }
             catch
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Determines whether this instance is byte.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is byte; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsByte(this string value)
+        {
+            try
+            {
+                byte.TryParse(value, out byte result);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Determines whether this instance is short.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is short; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsShort(this string value)
+        {
+            try
+            {
+                short.TryParse(value, out short result);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Determines whether this instance is int32.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is int32; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsInt32(this string value)
+        {
+            try
+            {
+                int.TryParse(value, out int result);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Determines whether this instance is int64.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is int64; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsInt64(this string value)
+        {
+            try
+            {
+                int.TryParse(value, out int result);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Determines whether this instance is decimal.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is decimal; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsDecimal(this string value)
+        {
+            try
+            {
+                decimal.TryParse(value, out decimal result);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// Determines whether this instance is float.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is float; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFloat(this string value)
+        {
+            try
+            {
+                float.TryParse(value, out float result);
+                return true;
+            }
+            catch (Exception)
             {
                 return false;
             }
