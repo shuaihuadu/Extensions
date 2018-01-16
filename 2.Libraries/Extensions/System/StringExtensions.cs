@@ -531,14 +531,15 @@ namespace System
         /// Determines whether this instance is byte.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="style">The number style.</param>
         /// <returns>
         ///   <c>true</c> if the specified value is byte; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsByte(this string value)
+        public static bool IsByte(this string value, NumberStyles style = NumberStyles.None)
         {
             try
             {
-                byte.TryParse(value, out byte result);
+                byte.Parse(value, style);
                 return true;
             }
             catch (Exception)
@@ -550,14 +551,15 @@ namespace System
         /// Determines whether this instance is short.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="style">The number style.</param>
         /// <returns>
         ///   <c>true</c> if the specified value is short; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsShort(this string value)
+        public static bool IsShort(this string value, NumberStyles style = NumberStyles.None)
         {
             try
             {
-                short.TryParse(value, out short result);
+                short.Parse(value, style);
                 return true;
             }
             catch (Exception)
@@ -569,14 +571,15 @@ namespace System
         /// Determines whether this instance is int32.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="style">The number style.</param>
         /// <returns>
         ///   <c>true</c> if the specified value is int32; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsInt32(this string value)
+        public static bool IsInt32(this string value, NumberStyles style = NumberStyles.None)
         {
             try
             {
-                int.TryParse(value, out int result);
+                int.Parse(value, style);
                 return true;
             }
             catch (Exception)
@@ -588,14 +591,15 @@ namespace System
         /// Determines whether this instance is int64.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="style">The number style.</param>
         /// <returns>
         ///   <c>true</c> if the specified value is int64; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsInt64(this string value)
+        public static bool IsInt64(this string value, NumberStyles style = NumberStyles.None)
         {
             try
             {
-                int.TryParse(value, out int result);
+                int.Parse(value, style);
                 return true;
             }
             catch (Exception)
@@ -607,14 +611,15 @@ namespace System
         /// Determines whether this instance is decimal.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="style">The number style.</param>
         /// <returns>
         ///   <c>true</c> if the specified value is decimal; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsDecimal(this string value)
+        public static bool IsDecimal(this string value, NumberStyles style = NumberStyles.None)
         {
             try
             {
-                decimal.TryParse(value, out decimal result);
+                decimal.Parse(value, style);
                 return true;
             }
             catch (Exception)
@@ -626,14 +631,15 @@ namespace System
         /// Determines whether this instance is float.
         /// </summary>
         /// <param name="value">The value.</param>
+        /// <param name="style">The number style.</param>
         /// <returns>
         ///   <c>true</c> if the specified value is float; otherwise, <c>false</c>.
         /// </returns>
-        public static bool IsFloat(this string value)
+        public static bool IsFloat(this string value, NumberStyles style = NumberStyles.None)
         {
             try
             {
-                float.TryParse(value, out float result);
+                float.Parse(value, style);
                 return true;
             }
             catch (Exception)

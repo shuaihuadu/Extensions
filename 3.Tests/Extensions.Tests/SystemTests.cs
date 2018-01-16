@@ -46,5 +46,11 @@ namespace Extensions.Tests
             int a = 1;
             Console.WriteLine(a.Between(1, 2));
         }
+        [TestMethod]
+        public void Is_Test()
+        {
+            Assert.IsTrue("12873".IsInt32());
+            Assert.IsFalse("dasd".IsInt32());
+        }
     }
 }
