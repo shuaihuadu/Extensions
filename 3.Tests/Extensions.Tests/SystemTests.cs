@@ -52,5 +52,12 @@ namespace Extensions.Tests
             Assert.IsTrue("12873".IsInt32());
             Assert.IsFalse("dasd".IsInt32());
         }
+
+        [TestMethod]
+        public void GetFullChinesePhoneticAlphabet_Test()
+        {
+            var a = "专业版";
+            Console.WriteLine(a.GetFullChinesePhoneticAlphabet());
+        }
     }
 }

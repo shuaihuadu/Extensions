@@ -60,6 +60,7 @@
     <Compile Include="System\FloatExtensions.cs" />
     <Compile Include="System\DoubleExtensions.cs" />
     <Compile Include="System\DecimalExtensions.cs" />
+    <Compile Include="System\PinYinHelper.cs" />
     <Compile Include="System\StringExtensions.cs" />
     <Compile Include="System\Int32Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

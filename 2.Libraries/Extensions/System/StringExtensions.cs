@@ -647,5 +647,21 @@ namespace System
                 return false;
             }
         }
+        /// <summary>
+        /// Gets the full chinese phonetic alphabet.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string GetFullChinesePhoneticAlphabet(this string value)
+        {
+            try
+            {
+                return PinYinHelper.Get(value);
+            }
+            catch
+            {
+                return "?";
+            }
+        }
     }
 }
