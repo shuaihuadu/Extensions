@@ -13,7 +13,7 @@
         /// <returns>The converted <see cref="Enum"/> value.</returns>
         public static T ToEnum<T>(this int value)
         {
-            return (T)(object)value;
+            return (T)Enum.ToObject(typeof(T), value);
         }
         /// <summary>
         /// Convert specified int value to a file size string.

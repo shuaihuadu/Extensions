@@ -59,5 +59,22 @@ namespace Extensions.Tests
             var a = "专业版";
             Console.WriteLine(a.GetFullChinesePhoneticAlphabet());
         }
+
+        enum Test
+        {
+            Value1 = 1,
+            Value2 = 2
+        }
+
+        [TestMethod]
+        public void ToEnum_Test()
+        {
+            byte value1 = 1;
+            int value2 = 2;
+            Console.WriteLine(value1.ToEnum<Test>());
+            Console.WriteLine(value2.ToEnum<Test>());
+            Console.WriteLine("Value1".ToEnum<Test>().ByteValue());
+            Console.WriteLine("Value2".ToEnum<Test>().IntValue());
+        }
     }
 }
