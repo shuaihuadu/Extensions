@@ -54,6 +54,7 @@
     <Compile Include="System\DateTimeExtensions.cs" />
     <Compile Include="System.Collections.Generic\IEnumerableExtensions.cs" />
     <Compile Include="System\EnumExtensions.cs" />
+    <Compile Include="System\TypeExtensions.cs" />
     <Compile Include="System\ObjectExtensions.cs" />
     <Compile Include="System\CharExtensions.cs" />
     <Compile Include="System\ByteExtensions.cs" />

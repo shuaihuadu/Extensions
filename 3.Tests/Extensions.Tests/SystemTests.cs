@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Extensions.Tests
 {
@@ -75,6 +76,42 @@ namespace Extensions.Tests
             Console.WriteLine(value2.ToEnum<Test>());
             Console.WriteLine("Value1".ToEnum<Test>().ByteValue());
             Console.WriteLine("Value2".ToEnum<Test>().IntValue());
+        }
+
+
+        public class DataItem
+        {
+            public string ItemName { get; set; }
+            public DateTime ItemDate { get; set; }
+        }
+
+        [TestMethod]
+        public void ToDataTable_Test()
+        {
+            var items = new List<DataItem>
+            {
+                new DataItem{ ItemName = "itemName1", ItemDate = DateTime.Now.AddDays(-1)},
+                new DataItem{ ItemName = "itemName2", ItemDate = DateTime.Now.AddDays(-2)},
+                new DataItem{ ItemName = "itemName3", ItemDate = DateTime.Now.AddDays(-3)},
+                new DataItem{ ItemName = "itemName4", ItemDate = DateTime.Now.AddDays(-4)},
+                new DataItem{ ItemName = "itemName5", ItemDate = DateTime.Now.AddDays(-5)},
+                new DataItem{ ItemName = "itemName6", ItemDate = DateTime.Now.AddDays(-6)},
+                new DataItem{ ItemName = "itemName7", ItemDate = DateTime.Now.AddDays(-7)},
+                new DataItem{ ItemName = "itemName8", ItemDate = DateTime.Now.AddDays(-8)},
+                new DataItem{ ItemName = "itemName9", ItemDate = DateTime.Now.AddDays(-9)},
+                new DataItem{ ItemName = "itemName10", ItemDate = DateTime.Now.AddDays(-10)},
+            };
+
+            var dataTable = items.ToDataTable();
+            Assert.AreEqual(10, dataTable.Rows.Count);
+            Assert.AreEqual(2, dataTable.Columns.Count);
+            Assert.AreEqual("ItemName", dataTable.Columns[0].ColumnName);
+            Assert.AreEqual("ItemDate", dataTable.Columns[1].ColumnName);
+
+            foreach (DataRow item in dataTable.Rows)
+            {
+                Console.WriteLine(item[0] + " === " + item[1]);
+            }
         }
     }
 }

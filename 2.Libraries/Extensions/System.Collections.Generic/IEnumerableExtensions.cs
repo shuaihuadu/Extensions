@@ -1,6 +1,6 @@
-﻿using System.Data;
+﻿using System.ComponentModel;
+using System.Data;
 using System.Linq;
-using System.Reflection;
 
 namespace System.Collections.Generic
 {
@@ -82,40 +82,26 @@ namespace System.Collections.Generic
         /// <param name="collection">The collection to convert.</param>
         /// <exception cref="ArgumentNullException"></exception>
         /// <returns>The converted datatable.</returns>
-        public static DataTable ToDataTable<T>(this IEnumerable<T> collection)
+        public static DataTable ToDataTable<T>(this IEnumerable<T> collection) where T : class
         {
-            List<string> propertyNameList = new List<string>();
-            DataTable dataTable = new DataTable();
             if (collection.IsNullOrEmpty())
             {
                 throw new ArgumentNullException(nameof(collection), "The collection to convert can not be null or empty.");
             }
-            PropertyInfo[] propertys = collection.FirstOrDefault().GetType().GetProperties();
-            foreach (PropertyInfo pi in propertys)
+            Type entityType = typeof(T);
+            DataTable dataTable = entityType.GetSchema();
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+            foreach (T item in collection)
             {
-                dataTable.Columns.Add(pi.Name, pi.PropertyType);
-            }
-            for (int i = 0; i < collection.Count(); i++)
-            {
-                ArrayList arrayList = new ArrayList();
-                foreach (PropertyInfo pi in propertys)
+                DataRow row = dataTable.NewRow();
+                foreach (PropertyDescriptor prop in properties)
                 {
-                    if (propertyNameList.Count == 0)
+                    if (dataTable.Columns.Contains(prop.Name))
                     {
-                        object obj = pi.GetValue(collection.ToList()[i], null);
-                        arrayList.Add(obj);
-                    }
-                    else
-                    {
-                        if (propertyNameList.Contains(pi.Name))
-                        {
-                            object obj = pi.GetValue(collection.ToList()[i], null);
-                            arrayList.Add(obj);
-                        }
+                        row[prop.Name] = prop.GetValue(item);
                     }
                 }
-                object[] array = arrayList.ToArray();
-                dataTable.LoadDataRow(array, true);
+                dataTable.Rows.Add(row);
             }
             return dataTable;
         }
