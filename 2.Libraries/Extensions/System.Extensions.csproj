@@ -51,6 +51,7 @@
     <Compile Include="System.Collections.Generic\DictionaryExtensions.cs" />
     <Compile Include="System.Collections.Generic\ICollectionExtensions.cs" />
     <Compile Include="System.Collections.Specialized\NameValueCollectionExtensions.cs" />
+    <Compile Include="System\BooleanExtensions.cs" />
     <Compile Include="System\DateTimeExtensions.cs" />
     <Compile Include="System.Collections.Generic\IEnumerableExtensions.cs" />
     <Compile Include="System\EnumExtensions.cs" />

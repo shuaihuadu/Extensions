@@ -144,6 +144,9 @@
   <data name="MonthsAgo" xml:space="preserve">
     <value>个月前</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
   <data name="SecondAgo" xml:space="preserve">
     <value>秒前</value>
   </data>
@@ -161,5 +164,8 @@
   </data>
   <data name="YearsAgo" xml:space="preserve">
     <value>年前</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
   </data>
 </root>
