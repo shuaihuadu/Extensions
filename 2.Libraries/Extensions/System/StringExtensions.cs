@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web;
 
 namespace System
 {
@@ -38,6 +39,15 @@ namespace System
                 return true;
             }
             return false;
+        }
+        /// <summary>
+        /// Indicates whether the specified string is null or an System.String.Empty string(Include all non visible characters).
+        /// <param name="value">The string to test.</param>
+        /// <returns>true if the value parameter is not null or not an empty string (""); otherwise, false.</returns>
+        /// </summary>
+        public static bool IsNotNullOrBlank(this string value)
+        {
+            return !IsNullOrBlank(value);
         }
         /// <summary>
         /// Removes all non visible characters from the current System.String object.
@@ -137,8 +147,9 @@ namespace System
         /// Please refer to <see cref="string.Trim()"/>
         /// </summary>
         /// <param name="value">The string to test.</param>
+        /// <param name="trimChars">An array of Unicode characters to remove, or null.</param>
         /// <returns>The trimed string</returns>
-        public static string SafeTrim(this string value)
+        public static string SafeTrim(this string value, params char[] trimChars)
         {
             if (value == null)
             {
@@ -146,7 +157,7 @@ namespace System
             }
             else
             {
-                return value.Trim();
+                return value.Trim(trimChars);
             }
         }
         /// <summary>
@@ -648,6 +659,34 @@ namespace System
             }
         }
         /// <summary>
+        /// Determines whether the <paramref name="value"/> is a valid date time string.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="provider">An object that supplies culture-specific formatting information about <paramref name="value"/>.</param>
+        /// <param name="styles">A bitwise combination of the enumeration values that indicates the style elements that can be present in s for the parse operation to succeed, and that defines how to interpret the parsed date in relation to the current time zone or the current date. A typical value to specify is System.Globalization.DateTimeStyles.None.</param>
+        /// <returns>
+        ///   <c>true</c> if <paramref name="value"/> is date time; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsDateTime(this string value, IFormatProvider provider = null, DateTimeStyles styles = DateTimeStyles.None)
+        {
+            try
+            {
+                if (provider.IsNull())
+                {
+                    DateTime.Parse(value);
+                }
+                else
+                {
+                    DateTime.Parse(value, provider, styles);
+                }
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        /// <summary>
         /// Gets the full chinese phonetic alphabet.
         /// </summary>
         /// <param name="value">The value.</param>
@@ -662,6 +701,32 @@ namespace System
             {
                 return "?";
             }
+        }
+        /// <summary>
+        /// Gets the html decode string of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string HtmlDecode(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            return HttpUtility.HtmlDecode(value);
+        }
+        /// <summary>
+        /// Gets the html encode string of <paramref name="value"/>.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string HtmlEncode(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            return HttpUtility.HtmlEncode(value);
         }
     }
 }
