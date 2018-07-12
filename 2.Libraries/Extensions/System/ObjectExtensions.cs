@@ -170,5 +170,23 @@ namespace System
         {
             if (obj == null) throw new ArgumentNullException(parameterName + " not allowed to be null");
         }
+        /// <summary>
+        /// To the data table with type name of <paramref name="entity"/>.
+        /// </summary>
+        /// <typeparam name="T">The entity type.</typeparam>
+        /// <param name="entity">The entity.</param>
+        /// <returns>An empty data table with type name of <paramref name="entity"/>.</returns>
+        public static DataTable ToDataTable<T>(this T entity)
+        {
+            Type entityType = typeof(T);
+            DataTable table = new DataTable(entityType.Name);
+            PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(entityType);
+            foreach (PropertyDescriptor prop in properties)
+            {
+                Type type = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType;
+                table.Columns.Add(prop.Name, type);
+            }
+            return table;
+        }
     }
 }
