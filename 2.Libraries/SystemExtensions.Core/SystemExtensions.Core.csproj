@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\Extensions\Resources\Resource.Designer.cs" Link="Resources\Resource.Designer.cs" />
+    <Compile Include="..\Extensions\System.Collections.Generic\DictionaryExtensions.cs" Link="System.Collections.Generic\DictionaryExtensions.cs" />
+    <Compile Include="..\Extensions\System.Collections.Generic\ICollectionExtensions.cs" Link="System.Collections.Generic\ICollectionExtensions.cs" />
+    <Compile Include="..\Extensions\System.Collections.Generic\IEnumerableExtensions.cs" Link="System.Collections.Generic\IEnumerableExtensions.cs" />
+    <Compile Include="..\Extensions\System\BooleanExtensions.cs" Link="System\BooleanExtensions.cs" />
+    <Compile Include="..\Extensions\System\ByteExtensions.cs" Link="System\ByteExtensions.cs" />
+    <Compile Include="..\Extensions\System\CharExtensions.cs" Link="System\CharExtensions.cs" />
+    <Compile Include="..\Extensions\System\DateTimeExtensions.cs" Link="System\DateTimeExtensions.cs" />
+    <Compile Include="..\Extensions\System\DecimalExtensions.cs" Link="System\DecimalExtensions.cs" />
+    <Compile Include="..\Extensions\System\DoubleExtensions.cs" Link="System\DoubleExtensions.cs" />
+    <Compile Include="..\Extensions\System\EnumExtensions.cs" Link="System\EnumExtensions.cs" />
+    <Compile Include="..\Extensions\System\FloatExtensions.cs" Link="System\FloatExtensions.cs" />
+    <Compile Include="..\Extensions\System\Int32Extensions.cs" Link="System\Int32Extensions.cs" />
+    <Compile Include="..\Extensions\System\ObjectExtensions.cs" Link="System\ObjectExtensions.cs" />
+    <Compile Include="..\Extensions\System\PinYinHelper.cs" Link="System\PinYinHelper.cs" />
+    <Compile Include="..\Extensions\System\StringExtensions.cs" Link="System\StringExtensions.cs" />
+    <Compile Include="..\Extensions\System\TypeExtensions.cs" Link="System\TypeExtensions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="..\Extensions\Resources\Resource.en-US.resx" Link="Resources\Resource.en-US.resx" />
+    <EmbeddedResource Include="..\Extensions\Resources\Resource.resx" Link="Resources\Resource.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="System.Collections.Specialized\" />
+    <Folder Include="System.Collections.Generic\" />
+    <Folder Include="System\" />
+  </ItemGroup>
+
+</Project>
