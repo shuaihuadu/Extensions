@@ -353,62 +353,67 @@ namespace Microsoft.AspNetCore.Mvc.Rendering
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(string value, string accentValue, string accentClass)
+        public static string AccentClass(this IHtmlHelper helper, string value, string accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="helper">The HtmlHelper.</param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(bool value, bool accentValue, string accentClass)
+        public static string AccentClass(this IHtmlHelper helper, bool value, bool accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="helper">The HtmlHelper.</param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(int value, int accentValue, string accentClass)
+        public static string AccentClass(this IHtmlHelper helper, int value, int accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="helper">The HtmlHelper.</param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(byte value, byte accentValue, string accentClass)
+        public static string AccentClass(this IHtmlHelper helper, byte value, byte accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="helper">The HtmlHelper.</param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(double value, double accentValue, string accentClass)
+        public static string AccentClass(this IHtmlHelper helper, double value, double accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="helper">The HtmlHelper.</param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(decimal value, decimal accentValue, string accentClass)
+        public static string AccentClass(this IHtmlHelper helper, decimal value, decimal accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
