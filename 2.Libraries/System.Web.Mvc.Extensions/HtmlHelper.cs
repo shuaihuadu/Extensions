@@ -331,66 +331,72 @@ namespace System.Web.Mvc
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="htmlHelper">The <see cref="HtmlHelper"/></param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(string value, string accentValue, string accentClass)
+        public static string AccentClass(this HtmlHelper htmlHelper, string value, string accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="htmlHelper">The <see cref="HtmlHelper"/></param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(bool value, bool accentValue, string accentClass)
+        public static string AccentClass(this HtmlHelper htmlHelper, bool value, bool accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="htmlHelper">The <see cref="HtmlHelper"/></param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(int value, int accentValue, string accentClass)
+        public static string AccentClass(this HtmlHelper htmlHelper, int value, int accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="htmlHelper">The <see cref="HtmlHelper"/></param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(byte value, byte accentValue, string accentClass)
+        public static string AccentClass(this HtmlHelper htmlHelper, byte value, byte accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="htmlHelper">The <see cref="HtmlHelper"/></param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(double value, double accentValue, string accentClass)
+        public static string AccentClass(this HtmlHelper htmlHelper, double value, double accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
         /// <summary>
         /// Gets the accent class name.
         /// </summary>
+        /// <param name="htmlHelper">The <see cref="HtmlHelper"/></param>
         /// <param name="value">The value.</param>
         /// <param name="accentValue">The accent value.</param>
         /// <param name="accentClass">The accent class name.</param>
         /// <returns>The accent class name.</returns>
-        public static string AccentClass(decimal value, decimal accentValue, string accentClass)
+        public static string AccentClass(this HtmlHelper htmlHelper, decimal value, decimal accentValue, string accentClass)
         {
             return GetAccentString(value, accentValue, accentClass);
         }
