@@ -1,5 +1,8 @@
-﻿using System.Globalization;
+﻿using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -727,6 +730,144 @@ namespace System
                 return string.Empty;
             }
             return HttpUtility.HtmlEncode(value);
+        }
+        /// <summary>
+        /// 去除字符串中的空格，并返回骆驼命名法的格式
+        /// </summary>
+        /// <param name="value">需要转换的字符串</param>
+        /// <returns></returns>
+        public static string TrimSpaceAndToCamelCase(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            List<string> strs = new List<string>();
+            foreach (var item in value.ReplaceSpecialSharacters(' ').Split(' '))
+            {
+                strs.Add(item.FirstCharToUpper());
+            }
+            return string.Join("", strs.ToArray());
+        }
+
+        /// <summary>
+        /// 判断指定的字符串是否是合法的<see cref="DateTime"/>.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool IsDateTime(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return false;
+            }
+            var dateTime = DateTimeExtensionConstants.DB_NULL_DATETIME;
+            if (DateTime.TryParse(value, out dateTime))
+            {
+                if (dateTime <= DateTimeExtensionConstants.DB_NULL_DATETIME)
+                {
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        /// <summary>
+        /// To the date time with partten.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="pattern">The pattern.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns></returns>
+        public static DateTime? ToDateTimeWithPartten(this string date, string pattern = DateTimeExtensionConstants.DEFAULT_DATE_FORMAT_PARTTEN, DateTime? defaultValue = null)
+        {
+            try
+            {
+                return DateTime.ParseExact(date, pattern, null);
+            }
+            catch (Exception)
+            {
+                return defaultValue;
+            }
+        }
+        /// <summary>
+        /// To the date time.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <param name="defaultValue">The default value.</param>
+        /// <returns></returns>
+        public static DateTime? ToDateTime(this string date, DateTime? defaultValue = null)
+        {
+            if (date.IsNullOrBlank())
+            {
+                return null;
+            }
+            try
+            {
+                return date.ToDateTime();
+            }
+            catch
+            {
+                return defaultValue;
+            }
+        }
+        /// <summary>
+        /// Convert  to the <paramref name="value"/> to a safe file name.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string ToSafeFileName(this string value)
+        {
+            value = value.Replace("\"", string.Empty);
+            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + "?" + "&";
+            foreach (char c in invalid)
+            {
+                value = value.Replace(c.ToString(), "_");
+            }
+            return value;
+        }
+        /// <summary>
+        /// To the decimal.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static decimal ToDecimal(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return default(decimal);
+            }
+            try
+            {
+                if (decimal.TryParse(value, out decimal result))
+                {
+                    return result;
+                }
+                else
+                {
+                    return default(decimal);
+                }
+            }
+            catch
+            {
+                return default(decimal);
+            }
+        }
+        /// <summary>
+        /// To the ut f8.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string ToUTF8(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            return Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(value));
         }
     }
 }

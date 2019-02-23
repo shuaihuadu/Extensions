@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
@@ -52,9 +53,12 @@
     <Compile Include="System.Collections.Generic\DictionaryExtensions.cs" />
     <Compile Include="System.Collections.Generic\ICollectionExtensions.cs" />
     <Compile Include="System.Collections.Specialized\NameValueCollectionExtensions.cs" />
+    <Compile Include="System.Reflection\MemberInfoExtensions.cs" />
+    <Compile Include="System.Reflection\TypeInfoExtensions.cs" />
     <Compile Include="System\BooleanExtensions.cs" />
     <Compile Include="System\DateTimeExtensions.cs" />
     <Compile Include="System.Collections.Generic\IEnumerableExtensions.cs" />
+    <Compile Include="System\DictionaryExtensions.cs" />
     <Compile Include="System\EnumExtensions.cs" />
     <Compile Include="System\TypeExtensions.cs" />
     <Compile Include="System\ObjectExtensions.cs" />

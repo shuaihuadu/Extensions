@@ -1,10 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Xml;
 using System.Xml.Serialization;
 
 namespace System
@@ -188,5 +187,86 @@ namespace System
             }
             return table;
         }
+        /// <summary>
+        /// Convertables the specified type.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <param name="type">The type.</param>
+        /// <returns></returns>
+        public static bool Convertable(this object obj, ObjectConvertbleSupportedType type)
+        {
+            if (obj.IsNull())
+            {
+                return false;
+            }
+            try
+            {
+                if (type == ObjectConvertbleSupportedType.Int)
+                {
+                    return int.TryParse(obj.ToString(), out int result);
+                }
+                else if (type == ObjectConvertbleSupportedType.Decimal)
+                {
+                    return decimal.TryParse(obj.ToString(), out decimal result);
+                }
+                else if (type == ObjectConvertbleSupportedType.DateTime)
+                {
+                    return DateTime.TryParse(obj.ToString(), out DateTime result);
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+    }
+
+    /// <summary>
+    /// The object convertable supported type.
+    /// </summary>
+    [Serializable]
+    public enum ObjectConvertbleSupportedType
+    {
+        /// <summary>
+        /// The int
+        /// </summary>
+        Int = 0,
+        /// <summary>
+        /// The decimal
+        /// </summary>
+        Decimal = 1,
+        /// <summary>
+        /// The date time
+        /// </summary>
+        DateTime = 2
+    }
+    /// <summary>
+    /// The Object Convertble Supported Type Mapping
+    /// </summary>
+    [Serializable]
+    public class ObjectConvertbleSupportedTypeMapping
+    {
+        /// <summary>
+        /// Gets the int.
+        /// </summary>
+        /// <value>
+        /// The int.
+        /// </value>
+        public static KeyValuePair<ObjectConvertbleSupportedType, Type> Int => new KeyValuePair<ObjectConvertbleSupportedType, Type>(ObjectConvertbleSupportedType.Int, typeof(int));
+        /// <summary>
+        /// Gets the decimal.
+        /// </summary>
+        /// <value>
+        /// The decimal.
+        /// </value>
+        public static KeyValuePair<ObjectConvertbleSupportedType, Type> Decimal => new KeyValuePair<ObjectConvertbleSupportedType, Type>(ObjectConvertbleSupportedType.Decimal, typeof(decimal));
+        /// <summary>
+        /// Gets the date time.
+        /// </summary>
+        /// <value>
+        /// The date time.
+        /// </value>
+        public static KeyValuePair<ObjectConvertbleSupportedType, Type> DateTime => new KeyValuePair<ObjectConvertbleSupportedType, Type>(ObjectConvertbleSupportedType.DateTime, typeof(DateTime));
     }
 }

@@ -1,8 +1,32 @@
 ﻿using Extensions.Resources;
+using System.Configuration;
 using System.Globalization;
 
 namespace System
 {
+    internal class DateTimeExtensionConstants
+    {
+        /// <summary>
+        /// The datetime format partten.
+        /// </summary>
+        public const string DEFAULT_DATETIME_FORMAT_PARTTEN = "yyyy-MM-dd HH:mm:ss";
+        /// <summary>
+        /// The datet format partten
+        /// </summary>
+        public const string DEFAULT_DATE_FORMAT_PARTTEN = "yyyy-MM-dd";
+        /// <summary>
+        /// The date month format partten
+        /// </summary>
+        public const string DEFAULT_DATE_MONTH_FORMAT_PARTTEN = "yyyy-MM";
+        /// <summary>
+        /// The database null datetime
+        /// </summary>
+        public const string DB_NULL_DATETIME_STRING = "1900-01-01 00:00:00.000";
+        /// <summary>
+        /// The database null datetime
+        /// </summary>
+        public static readonly DateTime DB_NULL_DATETIME = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+    }
     /// <summary>
     /// Common extensions of <see cref="DateTime"/>.
     /// </summary>
@@ -85,7 +109,16 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>1753/01/01 00:00:00 000</returns>
-        public static DateTime ToSqlServerMinValue(this DateTime dateTime)
+        public static DateTime SqlServerMinValue(this DateTime dateTime)
+        {
+            return new DateTime(1753, 1, 1, 0, 0, 0, 0);
+        }
+        /// <summary>
+        /// Returns the min value of sql server datetime.
+        /// </summary>
+        /// <param name="dateTime">The <see cref="DateTime"/></param>
+        /// <returns>1753/01/01 00:00:00 000</returns>
+        public static DateTime SqlServerMinValue(this DateTime? dateTime)
         {
             return new DateTime(1753, 1, 1, 0, 0, 0, 0);
         }
@@ -94,7 +127,16 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
         /// <returns>9999/12/31 23:59:59 997</returns>
-        public static DateTime ToSqlServerMaxValue(this DateTime dateTime)
+        public static DateTime SqlServerMaxValue(this DateTime dateTime)
+        {
+            return new DateTime(9999, 12, 31, 23, 59, 59, 997);
+        }
+        /// <summary>
+        /// Returns the max value of sql server datetime.
+        /// </summary>
+        /// <param name="dateTime">The <see cref="DateTime"/></param>
+        /// <returns>9999/12/31 23:59:59 997</returns>
+        public static DateTime SqlServerMaxValue(this DateTime? dateTime)
         {
             return new DateTime(9999, 12, 31, 23, 59, 59, 997);
         }
@@ -120,6 +162,22 @@ namespace System
                 dateTime = sqlServerMinDateTime;
             }
             return dateTime;
+        }
+        /// <summary>
+        /// Returns the safe value of sql server datetime.
+        /// </summary>
+        /// <param name="dateTime">The <see cref="DateTime"/></param>
+        /// <returns>A safe value of sql server dateTime</returns>
+        public static DateTime ToSqlServerSafeDateTime(this DateTime? dateTime)
+        {
+            if (!dateTime.HasValue)
+            {
+                return dateTime.SqlServerMinValue();
+            }
+            else
+            {
+                return dateTime.Value.ToSqlServerSafeDateTime();
+            }
         }
         /// <summary>
         /// Returns the last day of the month of the specified datetime.
@@ -166,6 +224,130 @@ namespace System
         public static bool IsWeekend(this DateTime dateTime)
         {
             return dateTime.DayOfWeek == DayOfWeek.Saturday || dateTime.DayOfWeek == DayOfWeek.Sunday;
+        }
+        /// <summary>
+        /// Determines whether [is null or empty].
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns>
+        ///   <c>true</c> if [is null or empty] [the specified date time]; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsNullOrEmpty(this DateTime dateTime)
+        {
+            return dateTime == DateTime.MinValue || dateTime <= DateTimeExtensionConstants.DB_NULL_DATETIME;
+        }
+        /// <summary>
+        /// To the application month string.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="partten">The partten.</param>
+        /// <returns></returns>
+        public static string ToApplicationMonthString(this DateTime dateTime, string partten = DateTimeExtensionConstants.DEFAULT_DATE_MONTH_FORMAT_PARTTEN)
+        {
+            if (dateTime.IsNullOrEmpty())
+            {
+                return string.Empty;
+            }
+            return dateTime.ToString(partten);
+        }
+        /// <summary>
+        /// To the application month string.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="emptyContent">The empty content.</param>
+        /// <returns></returns>
+        public static string ToApplicationMonthString(this DateTime? dateTime, string emptyContent = "", string partten = DateTimeExtensionConstants.DEFAULT_DATE_FORMAT_PARTTEN)
+        {
+            if (!dateTime.HasValue)
+            {
+                return string.Empty;
+            }
+            return dateTime.Value.ToApplicationMonthString(partten);
+        }
+        /// <summary>
+        /// To the application date partten string.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="partten">The partten.</param>
+        /// <returns></returns>
+        public static string ToApplicationDateParttenString(this DateTime dateTime, string partten = DateTimeExtensionConstants.DEFAULT_DATE_FORMAT_PARTTEN)
+        {
+            if (dateTime.IsNullOrEmpty())
+            {
+                return string.Empty;
+            }
+            return dateTime.ToString(partten);
+        }
+        /// <summary>
+        /// To the application date partten string.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="emptyContent">The empty content.</param>
+        /// <param name="partten">The partten.</param>
+        /// <returns></returns>
+        public static string ToApplicationDateParttenString(this DateTime? dateTime, string emptyContent = "", string partten = DateTimeExtensionConstants.DEFAULT_DATE_FORMAT_PARTTEN)
+        {
+            if (!dateTime.HasValue)
+            {
+                return emptyContent;
+            }
+            return dateTime.Value.ToApplicationDateParttenString(partten);
+        }
+        /// <summary>
+        /// To the application date time string.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="partten">The partten.</param>
+        /// <returns></returns>
+        public static string ToApplicationDateTimeString(this DateTime dateTime, string partten = DateTimeExtensionConstants.DEFAULT_DATETIME_FORMAT_PARTTEN)
+        {
+            if (dateTime.IsNullOrEmpty())
+            {
+                return string.Empty;
+            }
+            return dateTime.ToString(partten);
+        }
+        /// <summary>
+        /// To the application date time string.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <param name="emptyContent">The empty content.</param>
+        /// <param name="partten">The partten.</param>
+        /// <returns></returns>
+        public static string ToApplicationDateTimeString(this DateTime? dateTime, string emptyContent = "", string partten = DateTimeExtensionConstants.DEFAULT_DATETIME_FORMAT_PARTTEN)
+        {
+            if (!dateTime.HasValue)
+            {
+                return emptyContent;
+            }
+            return dateTime.Value.ToApplicationDateTimeString(partten);
+        }
+        /// <summary>
+        /// To the date with minimum time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
+        public static DateTime? ToDateWithMinTime(this DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.ToDateWithMinTime() : dateTime;
+        }
+        /// <summary>
+        /// To the date with maximum time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
+        public static DateTime? ToSystemDateWithMaxTime(this DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.ToSystemDateWithMaxTime() : dateTime;
+        }
+        /// <summary>
+        /// To the date with maximum time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
+        public static DateTime ToSystemDateWithMaxTime(this DateTime dateTime)
+        {
+            return dateTime.AddDays(1).AddSeconds(-1);
         }
     }
 }
