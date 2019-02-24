@@ -419,6 +419,38 @@ namespace System.Web.Mvc
                 return string.Empty;
             }
         }
+        /// <summary>
+        /// Get the accent class name.
+        /// </summary>
+        /// <param name="helper">The helper.</param>
+        /// <param name="areas">The areas.</param>
+        /// <param name="controllers">The controllers.</param>
+        /// <param name="actions">The actions.</param>
+        /// <param name="accentCss">The accent CSS.</param>
+        /// <returns></returns>
+        public static string AccentClass(this HtmlHelper helper, string areas = "", string controllers = "", string actions = "", string accentCss = " open active ")
+        {
+            accentCss = string.Format(" {0} ", accentCss);
+            string currentArea = string.Empty;
+            var area = helper.ViewContext.RouteData.DataTokens["area"];
+            if (area != null)
+            {
+                currentArea = area.ToString().ToLower();
+            }
+            string currentController = helper.ViewContext.RouteData.Values["controller"].ToString().ToLower();
+            string currentAction = helper.ViewContext.RouteData.Values["action"].ToString().ToLower();
+            var acceptAreas = areas.ToLower().Split(',').Distinct().ToArray();
+            var acceptControllers = controllers.ToLower().Split(',').Distinct().ToArray();
+            var acceptActions = actions.ToLower().Split(',').Distinct().ToArray();
+            if (!string.IsNullOrEmpty(currentArea))
+            {
+                return acceptControllers.Contains(currentController) && acceptActions.Contains(currentAction) ? accentCss : string.Empty;
+            }
+            else
+            {
+                return acceptAreas.Contains(currentArea) && acceptControllers.Contains(currentController) && acceptActions.Contains(currentAction) ? accentCss : string.Empty;
+            }
+        }
         #endregion
 
         /// <summary>
