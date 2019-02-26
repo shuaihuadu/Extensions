@@ -9,11 +9,15 @@
     <Compile Include="..\Extensions\System.Collections.Generic\DictionaryExtensions.cs" Link="System.Collections.Generic\DictionaryExtensions.cs" />
     <Compile Include="..\Extensions\System.Collections.Generic\ICollectionExtensions.cs" Link="System.Collections.Generic\ICollectionExtensions.cs" />
     <Compile Include="..\Extensions\System.Collections.Generic\IEnumerableExtensions.cs" Link="System.Collections.Generic\IEnumerableExtensions.cs" />
+    <Compile Include="..\Extensions\System.Collections.Specialized\NameValueCollectionExtensions.cs" Link="System.Collections.Specialized\NameValueCollectionExtensions.cs" />
+    <Compile Include="..\Extensions\System.Reflection\MemberInfoExtensions.cs" Link="System.Reflection\MemberInfoExtensions.cs" />
+    <Compile Include="..\Extensions\System.Reflection\TypeInfoExtensions.cs" Link="System.Reflection\TypeInfoExtensions.cs" />
     <Compile Include="..\Extensions\System\BooleanExtensions.cs" Link="System\BooleanExtensions.cs" />
     <Compile Include="..\Extensions\System\ByteExtensions.cs" Link="System\ByteExtensions.cs" />
     <Compile Include="..\Extensions\System\CharExtensions.cs" Link="System\CharExtensions.cs" />
     <Compile Include="..\Extensions\System\DateTimeExtensions.cs" Link="System\DateTimeExtensions.cs" />
     <Compile Include="..\Extensions\System\DecimalExtensions.cs" Link="System\DecimalExtensions.cs" />
+    <Compile Include="..\Extensions\System\DictionaryExtensions.cs" Link="System\DictionaryExtensions.cs" />
     <Compile Include="..\Extensions\System\DoubleExtensions.cs" Link="System\DoubleExtensions.cs" />
     <Compile Include="..\Extensions\System\EnumExtensions.cs" Link="System\EnumExtensions.cs" />
     <Compile Include="..\Extensions\System\FloatExtensions.cs" Link="System\FloatExtensions.cs" />
@@ -30,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="System.Reflection\" />
     <Folder Include="System.Collections.Specialized\" />
     <Folder Include="System.Collections.Generic\" />
     <Folder Include="System\" />
