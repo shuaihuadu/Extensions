@@ -220,6 +220,29 @@ namespace System
                 return false;
             }
         }
+        /// <summary>
+        /// Hiddens the field value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">The object.</param>
+        /// <param name="fileds">The fileds.</param>
+        /// <returns></returns>
+        public static T HiddenFieldValue<T>(this T obj, params string[] fileds) where T : class
+        {
+            if (obj.IsNull())
+            {
+                return obj;
+            }
+            var properties = obj.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                if (property.IsNotNull() && property.CanWrite && fileds.Contains(property.Name))
+                {
+                    property.SetValue(obj, null, null);
+                }
+            }
+            return obj;
+        }
     }
 
     /// <summary>

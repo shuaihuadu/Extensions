@@ -336,6 +336,15 @@ namespace System
         /// </summary>
         /// <param name="dateTime">The date time.</param>
         /// <returns></returns>
+        public static DateTime? ToDateWithMaxTime(this DateTime? dateTime)
+        {
+            return dateTime.HasValue ? dateTime.Value.ToDateWithMaxTime() : dateTime;
+        }
+        /// <summary>
+        /// To the date with maximum time.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
         public static DateTime? ToSystemDateWithMaxTime(this DateTime? dateTime)
         {
             return dateTime.HasValue ? dateTime.Value.ToSystemDateWithMaxTime() : dateTime;

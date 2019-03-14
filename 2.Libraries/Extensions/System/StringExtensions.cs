@@ -287,6 +287,46 @@ namespace System
             }
         }
         /// <summary>
+        /// To the boolean.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="trueItems">The true items.</param>
+        /// <param name="falseItems">The false items.</param>
+        /// <returns></returns>
+        public static bool ToBoolean(this string value, List<string> trueItems = null, List<string> falseItems = null)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return default(bool);
+            }
+            try
+            {
+                if (bool.TryParse(value, out bool result))
+                {
+                    return result;
+                }
+                else
+                {
+                    if (trueItems.IsNotNullOrEmpty() && trueItems.Contains(value.SafeTrim()))
+                    {
+                        return true;
+                    }
+                    else if (falseItems.IsNotNullOrEmpty() && falseItems.Contains(value.SafeTrim()))
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch
+            {
+                return default(bool);
+            }
+        }
+        /// <summary>
         /// Convert specified string to a <see cref="byte"/> value.
         /// </summary>
         /// <param name="value">The string to test.</param>
@@ -732,6 +772,32 @@ namespace System
             return HttpUtility.HtmlEncode(value);
         }
         /// <summary>
+        /// URLs the decode.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string UrlDecode(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            return HttpUtility.UrlDecode(value);
+        }
+        /// <summary>
+        /// URLs the encode.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string UrlEncode(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            return HttpUtility.UrlEncode(value);
+        }
+        /// <summary>
         /// 去除字符串中的空格，并返回骆驼命名法的格式
         /// </summary>
         /// <param name="value">需要转换的字符串</param>
@@ -749,7 +815,6 @@ namespace System
             }
             return string.Join("", strs.ToArray());
         }
-
         /// <summary>
         /// 判断指定的字符串是否是合法的<see cref="DateTime"/>.
         /// </summary>
@@ -868,6 +933,68 @@ namespace System
                 return string.Empty;
             }
             return Encoding.UTF8.GetString(Encoding.UTF8.GetBytes(value));
+        }
+        /// <summary>
+        /// Trims the space and upper every word.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string TrimSpaceAndUpperEveryWord(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            var strs = new List<string>();
+            foreach (var item in value.ReplaceSpecialSharacters(' ').Split(' '))
+            {
+                strs.Add(item.FirstCharToUpper());
+            }
+            return string.Join("", strs.ToArray());
+        }
+        /// <summary>
+        /// Determines whether this instance is letter.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified value is letter; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsLetter(this string value)
+        {
+            return Regex.IsMatch(value, "^[a-zA-Z]+$");
+        }
+        /// <summary>
+        /// Trims the start.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="trimChars">The trim chars.</param>
+        /// <returns></returns>
+        public static string SafeTrimStart(this string value, params char[] trimChars)
+        {
+            return value.ToSafeValue().TrimStart(trimChars);
+        }
+        /// <summary>
+        /// Trims the s end.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="trimChars">The trim chars.</param>
+        /// <returns></returns>
+        public static string SafeTrimEnd(this string value, params char[] trimChars)
+        {
+            return value.ToSafeValue().TrimEnd(trimChars);
+        }
+        /// <summary>
+        /// Safes the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string ToSafeValue(this string value)
+        {
+            if (value.IsNullOrBlank())
+            {
+                return string.Empty;
+            }
+            return value;
         }
     }
 }
