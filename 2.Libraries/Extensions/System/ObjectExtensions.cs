@@ -159,6 +159,38 @@ namespace System
             action(obj);
         }
         /// <summary>
+        /// To the specified value of <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">The object.</param>
+        /// <returns></returns>
+        public static T To<T>(this object obj)
+        {
+            T result = default(T);
+            result = (T)Convert.ChangeType(obj, typeof(T));
+            return result;
+        }
+        /// <summary>
+        /// To the specified value of <typeparamref name="T"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">The object.</param>
+        /// <param name="default">The default.</param>
+        /// <returns></returns>
+        public static T To<T>(this object obj, T @default)
+        {
+            T result = @default;
+            try
+            {
+                result = (T)Convert.ChangeType(obj, typeof(T));
+                return result;
+            }
+            catch (Exception)
+            {
+                return @default;
+            }
+        }
+        /// <summary>
         /// Throws if argument is null.
         /// </summary>
         /// <typeparam name="T"></typeparam>

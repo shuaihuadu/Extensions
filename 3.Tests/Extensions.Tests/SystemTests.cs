@@ -113,5 +113,11 @@ namespace Extensions.Tests
                 Console.WriteLine(item[0] + " === " + item[1]);
             }
         }
+
+        [TestMethod]
+        public void Test_Object_To()
+        {
+            Console.WriteLine("True".To<int>(19));
+        }
     }
 }
