@@ -17,7 +17,6 @@
     <Compile Include="..\Extensions\System\CharExtensions.cs" Link="System\CharExtensions.cs" />
     <Compile Include="..\Extensions\System\DateTimeExtensions.cs" Link="System\DateTimeExtensions.cs" />
     <Compile Include="..\Extensions\System\DecimalExtensions.cs" Link="System\DecimalExtensions.cs" />
-    <Compile Include="..\Extensions\System\DictionaryExtensions.cs" Link="System\DictionaryExtensions.cs" />
     <Compile Include="..\Extensions\System\DoubleExtensions.cs" Link="System\DoubleExtensions.cs" />
     <Compile Include="..\Extensions\System\EnumExtensions.cs" Link="System\EnumExtensions.cs" />
     <Compile Include="..\Extensions\System\FloatExtensions.cs" Link="System\FloatExtensions.cs" />
