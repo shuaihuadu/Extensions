@@ -257,9 +257,10 @@ namespace System
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="obj">The object.</param>
+        /// <param name="isReverse">If true reverse the fileds in <typeparamref name="T"/>.</param>
         /// <param name="fileds">The fileds.</param>
         /// <returns></returns>
-        public static T HiddenFieldValue<T>(this T obj, params string[] fileds) where T : class
+        public static T HiddenFieldValue<T>(this T obj, bool isReverse = false, params string[] fileds) where T : class
         {
             if (obj.IsNull())
             {
@@ -268,7 +269,8 @@ namespace System
             var properties = obj.GetType().GetProperties();
             foreach (var property in properties)
             {
-                if (property.IsNotNull() && property.CanWrite && fileds.Contains(property.Name))
+                bool showOrHidden = isReverse ? (!fileds.Contains(property.Name)) : fileds.Contains(property.Name);
+                if (property.IsNotNull() && property.CanWrite && showOrHidden)
                 {
                     property.SetValue(obj, null, null);
                 }
