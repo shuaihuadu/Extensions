@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 
@@ -247,7 +248,7 @@ namespace System
                 }
                 return false;
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }
@@ -273,6 +274,45 @@ namespace System
                 if (property.IsNotNull() && property.CanWrite && showOrHidden)
                 {
                     property.SetValue(obj, null, null);
+                }
+            }
+            return obj;
+        }
+        /// <summary>
+        /// Safe the trim string properties of specified <paramref name="obj"/>.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="obj">The object.</param>
+        /// <param name="fields">The fields for trim.</param>
+        /// <returns></returns>
+        public static T SafeTrimStringProperties<T>(this T obj, params string[] fields) where T : class
+        {
+            if (obj.IsNull())
+            {
+                return obj;
+            }
+            var properties = new PropertyInfo[] { };
+            if (fields.IsNotNullOrEmpty())
+            {
+                properties = obj.GetType().GetProperties().Where(p => fields.Contains(p.Name) && p.PropertyType.Name == typeof(string).Name).EmptyIfNull().ToArray();
+            }
+            else
+            {
+                properties = obj.GetType().GetProperties().Where(p => p.PropertyType.Name == typeof(string).Name).EmptyIfNull().ToArray();
+            }
+            foreach (var property in properties)
+            {
+                if (property.IsNotNull() && property.CanWrite && property.PropertyType.Name == typeof(string).Name)
+                {
+                    var value = property.GetValue(obj, null);
+                    if (value.IsNotNull())
+                    {
+                        property.SetValue(obj, value.ToString().SafeTrim(), null);
+                    }
+                    else
+                    {
+                        property.SetValue(obj, string.Empty, null);
+                    }
                 }
             }
             return obj;

@@ -180,16 +180,6 @@ namespace System
             }
         }
         /// <summary>
-        /// Returns the last day of the month of the specified datetime.
-        /// </summary>
-        /// <param name="dateTime">A DateTime</param>
-        /// <returns>The last day of the month of the <paramref name="dateTime"/></returns>
-        public static DateTime LastDayOfMonth(this DateTime dateTime)
-        {
-            dateTime = new DateTime(dateTime.Year, dateTime.Month, 1);
-            return dateTime.AddMonths(1).AddDays(-1);
-        }
-        /// <summary>
         /// Returns the ages of the specified date time until now.
         /// </summary>
         /// <param name="dateTime">The <see cref="DateTime"/></param>
@@ -357,6 +347,25 @@ namespace System
         public static DateTime ToSystemDateWithMaxTime(this DateTime dateTime)
         {
             return dateTime.AddDays(1).AddSeconds(-1);
+        }
+        /// <summary>
+        /// Returns the first day of month of specified <paramref name="dateTime"/>.
+        /// </summary>
+        /// <param name="dateTime">The date time.</param>
+        /// <returns></returns>
+        public static DateTime FirstDayOfMonth(this DateTime dateTime)
+        {
+            return dateTime.AddDays(1 - dateTime.Day).Date;
+        }
+        /// <summary>
+        /// Returns the last day of the month of specified <paramref name="dateTime"/>.
+        /// </summary>
+        /// <param name="dateTime">A dateTime</param>
+        /// <param name="subtracteMilliseconds">The milliseconds to be subtracted.</param>
+        /// <returns>The last day of the month of the <paramref name="dateTime"/></returns>
+        public static DateTime LastDayOfMonth(this DateTime dateTime, int subtracteMilliseconds = 1)
+        {
+            return dateTime.AddDays(1 - dateTime.Day).Date.AddMonths(1).AddMilliseconds(subtracteMilliseconds * -1);
         }
     }
 }

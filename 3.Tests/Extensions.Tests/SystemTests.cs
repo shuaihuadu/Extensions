@@ -119,5 +119,11 @@ namespace Extensions.Tests
         {
             Console.WriteLine("True".To<int>(19));
         }
+        [TestMethod]
+        public void Test_First_And_Last_DayOfMonth()
+        {
+            Console.WriteLine(DateTime.Now.FirstDayOfMonth());
+            Console.WriteLine(DateTime.Now.LastDayOfMonth(1000).ToString("yyyy-MM-dd HH:mm:ss.fff"));
+        }
     }
 }
