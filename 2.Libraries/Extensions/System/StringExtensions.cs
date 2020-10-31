@@ -884,15 +884,28 @@ namespace System
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static string ToSafeFileName(this string value)
+        public static string ToSafeFileName(this string value, char replacement = '_')
         {
-            value = value.Replace("\"", string.Empty);
-            string invalid = new string(Path.GetInvalidFileNameChars()) + new string(Path.GetInvalidPathChars()) + "?" + "&";
-            foreach (char c in invalid)
+            var invalidChars = Path.GetInvalidFileNameChars();
+            if (invalidChars.Contains(replacement))
             {
-                value = value.Replace(c.ToString(), "_");
+                throw new ArgumentException(nameof(replacement));
             }
-            return value;
+            return invalidChars.Aggregate(value, (accmulate, result) => (accmulate.Replace(result, '_')));
+        }
+        /// <summary>
+        /// Convert  to the <paramref name="value"/> to a safe file path.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <returns></returns>
+        public static string ToSafeFilePathName(this string value, char replacement = '_')
+        {
+            var invalidChars = Path.GetInvalidPathChars();
+            if (invalidChars.Contains(replacement))
+            {
+                throw new ArgumentException(nameof(replacement));
+            }
+            return invalidChars.Aggregate(value, (accmulate, result) => (accmulate.Replace(result, '_')));
         }
         /// <summary>
         /// To the decimal.
