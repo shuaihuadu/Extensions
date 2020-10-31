@@ -898,7 +898,7 @@ namespace System
         /// </summary>
         /// <param name="value">The value.</param>
         /// <returns></returns>
-        public static string ToSafeFilePathName(this string value, char replacement = '_')
+        public static string ToSafeFilePath(this string value, char replacement = '_')
         {
             var invalidChars = Path.GetInvalidPathChars();
             if (invalidChars.Contains(replacement))
