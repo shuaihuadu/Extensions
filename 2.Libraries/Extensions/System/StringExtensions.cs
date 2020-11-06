@@ -977,37 +977,34 @@ namespace System
             return Regex.IsMatch(value, "^[a-zA-Z]+$");
         }
         /// <summary>
-        /// Trims the start.
+        /// Trims the start of the <paramref name="value"/> without <see cref="NullReferenceException"/>.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="trimChars">The trim chars.</param>
         /// <returns></returns>
         public static string SafeTrimStart(this string value, params char[] trimChars)
         {
-            return value.ToSafeValue().TrimStart(trimChars);
+            return value.SafeTrim().TrimStart(trimChars);
         }
         /// <summary>
-        /// Trims the s end.
+        /// Trims the end of the <paramref name="value"/> without <see cref="NullReferenceException"/>.
         /// </summary>
         /// <param name="value">The value.</param>
         /// <param name="trimChars">The trim chars.</param>
         /// <returns></returns>
         public static string SafeTrimEnd(this string value, params char[] trimChars)
         {
-            return value.ToSafeValue().TrimEnd(trimChars);
+            return value.SafeTrim().TrimEnd(trimChars);
         }
+
         /// <summary>
-        /// Safes the specified value.
+        /// Minify the specified <paramref name="value"/> if it is a json string.
         /// </summary>
-        /// <param name="value">The value.</param>
-        /// <returns></returns>
-        public static string ToSafeValue(this string value)
+        /// <param name="value">The json string</param>
+        /// <returns>The minified json string</returns>
+        public static string MinifyJsonString(this string value)
         {
-            if (value.IsNullOrBlank())
-            {
-                return string.Empty;
-            }
-            return value;
+            return Regex.Replace(value.SafeTrim(), "(\"(?:[^\"\\\\]|\\\\.)*\")|\\s+", "$1");
         }
     }
 }
